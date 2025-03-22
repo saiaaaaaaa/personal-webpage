@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Webpage</title>
+    <style>
+      html {
+        height: 100%;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        font-family: Monospace, Monospace;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+      #header {
+        display: flex;
+        flex-direction: column;
+      }
+      #header > h1 {
+        background-color: #4088c7;
+        color: white;
+        margin: 0;
+        padding: 24px;
+        text-align: center;
+      }
+      #header > nav {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+      }
+      .tab {
+        align-items: center;
+        box-sizing: border-box;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        font-weight: bold;
+        height: 56px;
+        justify-content: center;
+        padding: 0 16px;
+        text-align: center;
+        transition: 0.15s ease-in;
+      }
+      .unselected:hover {
+        border-bottom: inset white 4px;
+      }
+      .selected {
+        border-bottom: inset #4088c7 4px;
+        color: #4088c7;
+      }
+      #content {
+        height: 100%;
+      }
+      #content > embed {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Personal Webpage</h1>
+      <nav>
+        <a class="tab selected" onclick="tabselect(0)">About Me</a>
+        <a class="tab unselected" onclick="tabselect(1)">Other Works</a>
+        <a class="tab unselected" onclick="tabselect(2)">Contact</a>
+      </nav>
+    </div>
+    <div id="content">
+      <embed id="embed" type="text/html" src="pages/about_me.html">
+    </div>
+  </body>
+  <script>
+    var a = document.getElementsByTagName("a");
+    var pages = ["pages/about_me.html", "pages/other_works.html", "pages/contact.html"];
+    function tabselect(index){
+      for (var b = 0; b < a.length; b++){
+        if (b != index){
+          if (a[b].classList.contains("selected")){
+            a[b].classList = "tab unselected";
+          }
+        } else {
+          a[b].classList = "tab selected";
+          document.getElementById("embed").src = pages[b];
+        }
+      }
+    }
+  </script>
+</html>
